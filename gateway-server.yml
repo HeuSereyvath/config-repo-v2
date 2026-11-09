@@ -1,0 +1,70 @@
+application:
+  version: 1.0
+server:
+  # port: ${GATEWAY_SERVER_PORT:5556}
+  port: 9999
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          globalcors:
+            corsConfigurations:
+              '[/**]':
+                allowedOrigins:
+                  - "*"              
+                allowedHeaders:
+                  - Content-Type
+                  - Authorization
+                  - appName
+                  - Accept-Language
+                allowedMethods:
+                  - "*"
+                exposedHeaders:
+                  - "Content-Disposition"
+                maxAge: 172800
+          routes: #manual specify lb services for better control
+            - id: customer-service
+              uri: lb://customer-service
+              predicates:
+                - Path=/customer-service/**
+            - id: admin-service
+              uri: lb://admin-service
+              predicates:
+                - path=/admin-service/**
+            - id: content-management-service
+              uri: lb://content-management-service
+              predicates:
+                - path=/api/v1/content-management-service/**
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - path=/user-service/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+  endpoint:
+    gateway:
+      access: read-only
+
