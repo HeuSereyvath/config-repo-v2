@@ -89,6 +89,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -150,6 +151,7 @@
       <workItem from="1794041521012" duration="31000" />
       <workItem from="1794045638758" duration="1173000" />
       <workItem from="1794209478554" duration="3117000" />
+      <workItem from="1794235653061" duration="1622000" />
     </task>
     <servers />
   </component>
