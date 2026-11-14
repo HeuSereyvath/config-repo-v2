@@ -81,17 +81,29 @@ spring:
   application:
     name: customer-service
 
-  r2dbc:
-    url: ${R2DBC_URL:r2dbc:postgresql://localhost:5432/customer_service1}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+#  r2dbc:
+#    url: ${R2DBC_URL:r2dbc:postgresql://localhost:5432/customer_service1}
+#    username: ${DB_USERNAME:postgres}
+#    password: ${DB_PASSWORD:postgres}
+#
+#  liquibase:
+#    enabled: true
+#    url: ${JDBC_URL:jdbc:postgresql://localhost:5432/customer_service1}
+#    user: ${DB_USERNAME:postgres}
+#    password: ${DB_PASSWORD:postgres}
+#    change-log: classpath:db/changelog/db.changelog-master.yaml
 
-  liquibase:
-    enabled: true
-    url: ${JDBC_URL:jdbc:postgresql://localhost:5432/customer_service1}
-    user: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
-    change-log: classpath:db/changelog/db.changelog-master.yaml
+    r2dbc:
+      url: r2dbc:postgresql://host.docker.internal:5432/customer_service1
+      username: postgres
+      password: postgres
+
+    liquibase:
+      enabled: true
+      url: jdbc:postgresql://host.docker.internal:5432/customer_service1
+      user: postgres
+      password: postgres
+      change-log: classpath:/db/changelog/db.changelog-master.yaml
 
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092,localhost:9094,localhost:9096}
